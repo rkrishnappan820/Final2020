@@ -1,0 +1,151 @@
+<html>
+<head>
+      <title>Flag Guesser Game</title>
+      <script>
+
+        var pics = ["<img src = 'ken.png' >","<img src = 'Am.jpg'>","<img src = 'Braz.jpg'>","<img src = 'fin.jpg'>","<img src = 'Jap.jpg'>" ];
+        var solutions = ["Kenya", "America", "Brazil","Finland", "Japan" ];
+        var answers = [];//Populate this with user answers
+        var index = 0;//add one to this in getUserAnswers to advance
+        var score = 0;//this gets added to in the checkAnswers() function
+        var table = ""; //this gets created in the displayResult() function
+
+          function init()
+          {
+            document.getElementById("but2").style.visibility = "hidden";
+            document.getElementById("flag").innerHTML=pics[0];
+          }
+
+          function getUserAnswers()
+          {
+            document.getElementById("but2").style.visibility = "hidden";
+
+              answers[answers.length] = document.getElementById("answer").value;
+              if (answers.length < 5) {
+                document.getElementById("flag").innerHTML=pics[answers.length];
+              }
+              else {
+                displayResult();
+                document.getElementById("but2").style.visibility = "visible";
+                document.getElementById("flag").innerHTML=pics[0];
+              }
+          }
+
+          function displayResult()
+            {
+              //Sends a table to a span tag with the results
+              //Should look like this:
+                if (solutions[0] == answers[0]){
+                  score = score + 100;
+                }
+                if (solutions[1] == answers[1]){
+                  score = score + 100;
+                }if (solutions[2] == answers[2]){
+                  score = score + 100;
+                }if (solutions[3] == answers[3]){
+                  score = score + 100;
+                }if (solutions[4] == answers[4]){
+                  score = score + 100;
+            }
+
+              var results = "******RESULTS*****" + "<hr>"
+              results = "<br>" +results + "Your Score: " + score +"/500"+"<br>";
+              results = "<br>" +results +  "Answer 1: " + solutions[0] + " YOUR Answer: " + answers[0]+"<br>";
+              results = "<br>" +results +  "Answer 2: " + solutions[1] + " YOUR Answer: " + answers[1]+"<br>";
+              results = "<br>" +results +  "Answer 3: " + solutions[2] + " YOUR Answer: " + answers[2]+"<br>";
+              results = "<br>" +results +  "Answer 4: " + solutions[3] + " YOUR Answer: " + answers[3]+"<br>";
+              results = "<br>" +results +  "Answer 5: " + solutions[4] + " YOUR Answer: " + answers[4]+"<br>";
+              results = "<br>" +results;
+              document.getElementById("output").innerHTML = results;
+              //Your Score:  4/5
+              //Answer 1: Cat  Your Answer: Cat
+              //Answer 2: Dog  Your Answer: Dog
+              //Answer 3: Fish  Your Answer: Fish
+              //Answer 4: Camel  Your Answer: Camel
+              //Answer 5: Griaffe  Your Answer: ajkdjahdk
+              reset();
+            }
+
+
+            function reset()
+           {
+             score = 0;
+             index = 0;
+             for(var i = answers.length -1; i >= 0; i--)
+             {
+                answers.splice(i,1);
+             }
+            //sets the user's answer array back to empty using .splice
+            //score = 0
+            //index  = 0 so that you start on the first picture again
+
+          }
+
+      </script>
+      <style>
+      img{
+        width: 250;
+        height: 250;
+        border: 5px solid #034f84;
+        margin: auto;
+        display: block;
+      }
+      body{
+        text-align: center;
+        background-color: #f7786b;
+      }
+      h1{
+        font-size: 36px;
+        color: #034f84;
+        font-weight: bold;
+        font-family: cursive;
+      }
+      hr{
+        border: 1px dotted black;
+      }
+#but2:hover{
+  color:red;
+  background-color: #92a8d1;
+
+
+}
+
+#but:hover{
+  color: red;
+  background-color: #92a8d1;
+
+}
+
+#line {
+    border: 1px solid black;
+}
+
+#but,#but2{
+  border-radius: 6px;
+  background-color: #f7cac9;
+}
+
+      </style>
+    </head>
+
+      <body onload="init()"><!--This is how you call something right away-->
+       <!--You Complete HTML-->
+     <h1>🚩🚩Flag Guesser Game🚩🚩</h1>
+       <hr id = line>
+       <br>
+      <span id="flag"></span>
+       <br>
+       <input type="text" id="answer" placeholder="Guess the Flag">
+       <input type="button" id="but" value="Enter" onclick="getUserAnswers()">
+       <input type="button" id="but2" value="Play Again?" onclick="getUserAnswers()">
+
+       <br>
+
+       <span id ="output"></span>
+       <span id ="output2"></span>
+       <span id ="output3"></span>
+
+       <span id ="output4"></span>
+
+    </body>
+</html>
